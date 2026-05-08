@@ -1,4 +1,11 @@
- let userdata = {
+
+
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // Recommended minimum is 10-12
+
+
+let userdata = {
   name: 'first',
   user: 'example',
   password: '12345'
@@ -37,7 +44,8 @@ async function saveUser(req,res) {
     const { name, user, password } = req.body;
     userdata.name = name;
     userdata.user = user;
-    userdata.password = password;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    userdata.password = hashedPassword;
     return res.status(200).json({ message: 'Usuário atualizado com sucesso', user: userdata });
 }
 
