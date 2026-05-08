@@ -28,4 +28,23 @@ async function saveSalario(req, res) {
     return res.status(200).json({ message: 'Salário atualizado com sucesso', salario: dataSalario.salario });
 }
 
-module.exports = { getSalario, getSalarioLiquido, saveSalario };
+async function getUser(req, res) {
+    return res.status(200).json(user);
+}
+
+
+async function saveUser(req,res) {
+    const { name, user, password } = req.body;
+    user.name = name;
+    user.user = user;
+    user.password = password;
+    return res.status(200).json({ message: 'Usuário atualizado com sucesso', user });
+}
+
+module.exports = { 
+    getSalario, 
+    getSalarioLiquido, 
+    saveSalario, 
+    getUser,
+    saveUser
+};
